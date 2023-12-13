@@ -253,6 +253,11 @@ header{
   border-radius: 10px;
   cursor: pointer;
 }
+
+.btn_add_bag:disabled{
+  background-color: #ddd;
+  cursor: not-allowed;
+}
 .bag_item_count{
   background-color: #f16565;
   text-align: center;

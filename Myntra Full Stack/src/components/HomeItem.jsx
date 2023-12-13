@@ -1,9 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { bagActions } from '../features/bag/bagSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 function HomeItem({itm}) {
+  const [isDisabled, setIsDisabled] = useState(false)
+  
+  const  bagItems = useSelector((state)=>{
+    return state.bag;
+  })
+
+  useEffect(()=>{
+    setIsDisabled(false)
+    bagItems.items.forEach(element => {
+      if(element.id ===itm.id){
+        setIsDisabled(true)
+      }
+    });
+  },[bagItems])
+
+  const dispatch = useDispatch();
+
   function addToBag(){
-    
+    setIsDisabled(true)
+    dispatch(bagActions.addToBag(itm))
+    dispatch(bagActions.updateSummary())
   }
+
   return (
     <>
      
@@ -23,7 +45,7 @@ function HomeItem({itm}) {
             <span className="discount">({itm.discount_percentage}% OFF)</span></>
           } 
       </div>
-      <button className="btn_add_bag" onClick={addToBag}>Add to Bag</button>
+      <button className="btn_add_bag" onClick={addToBag} disabled={isDisabled}>Add to Bag</button>
     </div>
     </>
   )

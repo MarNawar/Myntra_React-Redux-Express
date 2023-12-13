@@ -11,7 +11,6 @@ const filterSlice = createSlice({
   initialState,
   reducers:{
     lowToHigh: (state)=>{
-      console.log(state.sort);
       return{
         ...state,
         sort: 'lowToHigh',
@@ -24,7 +23,6 @@ const filterSlice = createSlice({
       }
     },
     searchQuery:(state,action)=>{
-      console.log("cmc", action.payload)
       return{
         ...state,
         searchQuery: action.payload, 

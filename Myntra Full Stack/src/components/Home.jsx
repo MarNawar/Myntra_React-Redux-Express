@@ -16,7 +16,6 @@ function Home() {
 
   const transformProducts = () => {
     let sortedProducts = [...item.items];
-    console.log(sortedProducts);
     if (filtered.sort!=='') {
       sortedProducts = [...sortedProducts].sort((a, b) => {
         return filtered.sort === 'lowToHigh' ? a.current_price - b.current_price : b.current_price - a.current_price

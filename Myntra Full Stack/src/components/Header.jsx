@@ -1,11 +1,26 @@
-import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom'
+import { filterActions } from '../features/filter/filterSlice';
 
 function Header() {
+    const [txt, setTxt] = useState('');
     const  bagItems = useSelector((state)=>{
         return state.bag.totalItems;
     })
+    const dispatch = useDispatch()
+
+    const searchDebounceFunction = ()=>{
+        let timer;
+        return function(...newArgs){
+            clearTimeout(timer);
+            timer = setTimeout(()=>{
+                dispatch(filterActions.searchQuery(...newArgs));
+            },500);
+        }
+    }
+    const searchItems = searchDebounceFunction();
+
     return (
         <header>
             <div className="logo_container">
@@ -21,7 +36,10 @@ function Header() {
             </nav>
             <div className="search_bar">
                 <span className="material-symbols-outlined search_icon">search</span>
-                <input className="search_input" placeholder="Search for products, brands and more"/>
+                <input className="search_input" value ={txt} onChange={(e)=>{
+                    setTxt(e.target.value);
+                    searchItems(e.target.value);
+                }} placeholder="Search for products, brands and more"/>
             </div>
             <div className="action_bar">
                 <div className="action_container">

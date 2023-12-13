@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { bagActions } from '../features/bag/bagSlice';
+import { bagActions } from '../bag/bagSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 function HomeItem({itm}) {

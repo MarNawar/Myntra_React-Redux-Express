@@ -1,5 +1,5 @@
 import React from 'react'
-import HomeItem from './HomeItem'
+import HomeItem from '../features/items/HomeItem'
 import { useSelector } from 'react-redux'
 import Loader from './Loader'
 

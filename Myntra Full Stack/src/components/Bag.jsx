@@ -1,6 +1,6 @@
 import React from 'react'
-import BagSummery from './BagSummery'
-import BagItems from './BagItems';
+import BagSummery from '../features/bag/BagSummery'
+import BagItems from '../features/bag/BagItems';
 import { useSelector } from 'react-redux';
 
 function Bag() {

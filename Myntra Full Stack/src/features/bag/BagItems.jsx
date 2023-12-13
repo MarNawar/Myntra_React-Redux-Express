@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
-import { bagActions } from '../features/bag/bagSlice';
+import { bagActions } from './bagSlice';
 
 function BagItems({itm}) {
   const dispatch = useDispatch();

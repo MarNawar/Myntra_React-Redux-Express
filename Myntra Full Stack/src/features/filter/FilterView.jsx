@@ -53,9 +53,9 @@ function FilterView() {
         </optgroup>
         
         <optgroup label="By Ratings">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
+          <option value="1">1 & above</option>
+          <option value="2">2 & above</option>
+          <option value="3">3 & above</option>
           <option value="4">4 & above</option>
         </optgroup>
       </select>
@@ -64,47 +64,3 @@ function FilterView() {
 }
 
 export default FilterView
-
-
-
-
-
-
-// function ItemList({ items }) {
-//   const [selectedFilter, setSelectedFilter] = useState('all'); // State to manage the selected filter
-
-//   const filteredItems = items.filter(item => {
-//     if (selectedFilter === 'all') {
-//       return true; // Show all items when 'All' is selected
-//     } else {
-//       return item.category === selectedFilter; // Filter items based on selected category
-//     }
-//   });
-
-//   return (
-//     <div>
-//       <label htmlFor="filterDropdown">Filter by Category: </label>
-//       <select
-//         id="filterDropdown"
-//         value={selectedFilter}
-//         onChange={e => setSelectedFilter(e.target.value)}
-//       >
-//         <option value="all">All</option>
-//         <option value="category1">Category 1</option>
-//         <option value="category2">Category 2</option>
-//         {/* Add more options for other categories */}
-//       </select>
-
-//       <ul>
-//         {filteredItems.map((item, index) => (
-//           <li key={index}>
-//             {/* Display your item details here */}
-//             <p>{item.name}</p>
-//             {/* Add more item details */}
-//           </li>
-//         ))}
-//       </ul>
-//     </div>
-//   );
-// }
-

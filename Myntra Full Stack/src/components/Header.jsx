@@ -10,16 +10,19 @@ function Header() {
     })
     const dispatch = useDispatch()
 
-    const searchDebounceFunction = ()=>{
-        let timer;
-        return function(...newArgs){
-            clearTimeout(timer);
-            timer = setTimeout(()=>{
-                dispatch(filterActions.searchQuery(...newArgs));
-            },500);
-        }
+    function useDebounce(callback, delay) {
+        const timerRef = React.useRef(null);
+      
+        return React.useCallback((...args) => {
+          clearTimeout(timerRef.current);
+          timerRef.current = setTimeout(() => {
+            callback(...args);
+          }, delay);
+        }, [callback, delay]);
     }
-    const searchItems = searchDebounceFunction();
+    const debouncedSearch = useDebounce((value) => {
+        dispatch(filterActions.searchQuery(value));
+    }, 500);
 
     return (
         <header>
@@ -38,7 +41,7 @@ function Header() {
                 <span className="material-symbols-outlined search_icon">search</span>
                 <input className="search_input" value ={txt} onChange={(e)=>{
                     setTxt(e.target.value);
-                    searchItems(e.target.value);
+                    debouncedSearch(e.target.value);
                 }} placeholder="Search for products, brands and more"/>
             </div>
             <div className="action_bar">

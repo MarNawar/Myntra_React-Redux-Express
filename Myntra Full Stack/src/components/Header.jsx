@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom'
 import { filterActions } from '../features/filter/filterSlice';
+import useDebounce from '../customHooks/useDebounce';
 
 function Header() {
     const [txt, setTxt] = useState('');
@@ -10,16 +11,7 @@ function Header() {
     })
     const dispatch = useDispatch()
 
-    function useDebounce(callback, delay) {
-        const timerRef = React.useRef(null);
-      
-        return React.useCallback((...args) => {
-          clearTimeout(timerRef.current);
-          timerRef.current = setTimeout(() => {
-            callback(...args);
-          }, delay);
-        }, [callback, delay]);
-    }
+    
     const debouncedSearch = useDebounce((value) => {
         dispatch(filterActions.searchQuery(value));
     }, 500);
